@@ -1,21 +1,15 @@
-import uuid
 from typing import Optional
 
-from sqlalchemy import text, BIGINT, String
+from sqlalchemy import BIGINT, String
 from sqlalchemy.orm import Mapped, mapped_column
-from sqlalchemy.dialects.postgresql import UUID
 
-from database.models.base import Base, CreatedAtMixin, UpdatedAtMixin
+from database.models.base import Base, CreatedAtMixin, UpdatedAtMixin, uuid_pk
 
 
 class User(Base, CreatedAtMixin, UpdatedAtMixin):
     __tablename__ = "users"
 
-    user_id: Mapped[uuid.UUID] = mapped_column(
-        UUID(as_uuid=True),
-        primary_key=True,
-        server_default=text("gen_random_uuid()")
-    )
+    user_id: Mapped[uuid_pk]
     telegram_id: Mapped[int] = mapped_column(
         BIGINT,
         unique=True,
