@@ -1,7 +1,19 @@
+import uuid
 from datetime import datetime
+from typing import Annotated
 
-from sqlalchemy import TIMESTAMP, func
+from sqlalchemy import TIMESTAMP, func, text
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+from sqlalchemy.dialects.postgresql import UUID
+
+uuid_pk = Annotated[
+    uuid.UUID,
+    mapped_column(
+        UUID(as_uuid=True),
+        primary_key=True,
+        server_default=text("gen_random_uuid()")
+    )
+]
 
 
 class Base(DeclarativeBase):
