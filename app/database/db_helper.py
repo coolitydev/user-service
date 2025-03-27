@@ -7,7 +7,7 @@ from sqlalchemy.ext.asyncio import (
 )
 
 from config import settings
-from core.models import Base
+from database.models import Base
 
 
 class DatabaseHelper:

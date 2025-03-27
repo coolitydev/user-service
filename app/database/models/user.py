@@ -5,7 +5,7 @@ from sqlalchemy import text, BIGINT, String
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy.dialects.postgresql import UUID
 
-from core.models.base import Base, CreatedAtMixin, UpdatedAtMixin
+from database.models.base import Base, CreatedAtMixin, UpdatedAtMixin
 
 
 class User(Base, CreatedAtMixin, UpdatedAtMixin):
