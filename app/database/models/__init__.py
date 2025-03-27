@@ -1,7 +1,9 @@
 __all__ = (
     "Base",
-    "User"
+    "User",
+    "Wallet"
 )
 
 from .base import Base
 from .user import User
+from .wallet import Wallet
