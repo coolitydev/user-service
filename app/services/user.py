@@ -13,10 +13,13 @@ class UserService:
             self,
             user_data: UserCreate,
     ) -> Optional[User]:
-        user = await self.user_repo.create(user_data=user_data)
-        if user:
+        try:
+            user = await self.user_repo.create(user_data=user_data)
             await self.user_repo.session.commit()
-        return user
+            return user
+        except Exception:
+            await self.user_repo.session.rollback()
+            raise
 
     async def get_by_telegram_id(
             self,
